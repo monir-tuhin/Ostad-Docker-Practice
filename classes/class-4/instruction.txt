@@ -8,7 +8,11 @@ cd . : Stay in current folder (cd with one dot)
 ls : To show all files and folders
 ls -a : To show all files and folders with hidden files and folders also
 ls -l : To show all files and folders with details info
+
+
 Run an app at a fresh ubuntu server by docker manually (without docker file build)
+---------------------------------------------------------------------------------------------------
+
 docker run  - -rm -it ubuntu:20.04 : Here (04 is the 4 number month)
 -rm : after stopped the container it will removed automatically
 -it : Interactive. After running the container we can interact with the container. Container run howar sathe sathe ami container er sathe interact korte chai. Mane ami container er moddhe dhuke command chalabo. Ami je shell er moddhe docker container ta run korchi oi shell theke i ami sorasorai interact korte parbo
@@ -35,7 +39,13 @@ cp: copy
 ~: Home directory
 /index.php : index.php file which located at home directory
 (35f33333 : /var/www/html/) : 35f33333 is container id. And /var/www/html/ is apache kon address a index.php file ta rakhbo sei ta define koreche
-Run an app at a fresh ubuntu server by docker file. Create a docker file (Uporer instruction gulo docker file a inject kora and docker file er maddhome image build kora and then container calano)
+
+
+Run an app at a fresh ubuntu server by docker file. Create a docker file (Uporer instruction gulo docker file a inject kora and docker file er 
+---------------------------------------------------------------------------------------------------------------------------------------------------
+maddhome image build kora and then container calano)
+------------------------------------------------------
+
 Create a docker file (file exist at this directory: /home/monir/Development/Personal/RND/Docker/Ostad-Docker-Practice/Class-4/docker-with-php)
 docker build -t monirzaman/php-apache-img:latest .
 build: To build the image
