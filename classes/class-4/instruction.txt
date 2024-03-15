@@ -46,7 +46,7 @@ cp: copy
 maddhome image build kora and then container calano)
 ------------------------------------------------------
 
-Create a docker file (file exist at this directory)
+Create a docker file (file exist at docker-with-pho directory)
 docker build -t monirzaman/php-apache-img:latest .
 build: To build the image
 -t : To give a tag in the image (here the latest is the image tag. You can give any tag)
