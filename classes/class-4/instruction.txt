@@ -1,3 +1,6 @@
+docs link: https://docs.google.com/document/d/1z07vMVl5HkR0DOWDbtmv-PvVYqqcwvj0b3GkBQnQY9g/edit
+=======================================================================
+
 pwd : To show your current directory
 cd : To go home directory
 cd . . : To go one step previous folder (cd with two dot)
