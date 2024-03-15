@@ -10,7 +10,7 @@ ls -a : To show all files and folders with hidden files and folders also
 ls -l : To show all files and folders with details info
 
 
-Run an app at a fresh ubuntu server by docker manually (without docker file build)
+## Run an app at a fresh ubuntu server by docker manually (without docker file build)
 ---------------------------------------------------------------------------------------------------
 
 docker run  - -rm -it ubuntu:20.04 : Here (04 is the 4 number month)
@@ -41,7 +41,7 @@ cp: copy
 (35f33333 : /var/www/html/) : 35f33333 is container id. And /var/www/html/ is apache kon address a index.php file ta rakhbo sei ta define koreche
 
 
-Run an app at a fresh ubuntu server by docker file. Create a docker file (Uporer instruction gulo docker file a inject kora and docker file er 
+## Run an app at a fresh ubuntu server by docker file. Create a docker file (Uporer instruction gulo docker file a inject kora and docker file er 
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 maddhome image build kora and then container calano)
 ------------------------------------------------------
