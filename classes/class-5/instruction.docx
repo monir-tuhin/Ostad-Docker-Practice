@@ -1,0 +1,57 @@
+Class: 5
+RUN apt-get update && apt-get install apache2 php \ 
+libapache2-mod-php -y : \ (forward slash dile nicer line a nia jete parbo). Eita readability baranor jonno use hoi. Muloto boro command ke forward slash dia niche neya jete pare
+RUN apt-get update && apt-get install \
+Apache2 php libapache2-mod-php -y : Combine two commands (RUN apt-get update and RUN apt-get install) into one. And \ (forward slash) helps to make readability  of long commands.
+docker run  - -rm -it -p 9090:80 -d monirzaman/php-apache-img
+-d is detached mode (Container run korteche but amar nijer terminal a firyea anche. Container bash a interactive hocche na). Terminal close korleo amar container stop hocche na.
+Shell: shell holo operating system er sathe text dia kotha bolar ekta interface. -d na dia jokhon container calaitam tokhon container run hoye sorasori shell open korto. Linux er kichu shell application ache jegular maddhome amra terminal er sathe kotha boli. Such as:
+Bash: The default shell in most Linux distributions. It provides a command-line interface to interact with the operating system.
+vim or nano: Text editors used for editing files directly from the command line.
+Zsh, or Z shell :  is a powerful alternative to the default bash shell that offers a plethora of features and customizations.
+grep: A command-line utility for searching plain-text data sets for lines that match a regular expression.
+sed: A stream editor used to perform basic text transformations on an input stream.
+ash : This shell is a peasant in the alpine.
+And many more….
+Apache Run in foreground: Amra jokhon container run kortechi tokhon apache service ke manually start kora lagteche. Ei problem to overcome korar jonno apache ke foreground a run korte hobe. But ekhon docker run  - -rm -it -p 9090:80 -d monirzaman/php-apache-img ei command ta run kori then docker run hobe and command hisebe “/bin/bash” dekhabe docker ps dear por. And jodi ei command run kore docker run  - -rm -it -p 9090:80 -d monirzaman/php-apache-img /bin/bash then tokhon o same dekhabe after docker ps command. Mane holo by default docker foreground a “/bin/bash” ubuntu bash shell ke calai. But now we need to change this by explicitly docker run. We run apache service in the foreground by docker run command.
+docker run  - -rm -it -p 9090:80 -d monirzaman/php-apache-img apachectl -D FOREGROUND
+So now docker monitor korteche apache prochess ke. You can see this after the docker ps command. So we can see that apache is now running in the foreground. So we don’t need to run apache service manually. Muluto docker run er sesher dike apachectl -D FOREGROUND ei ta calanor uddessho hocche ei container er main command hisebe apachectl -D FOREGROUND ei ta execute kore without default command
+
+Run apache service into foreground after running the container : We can run apache service into foreground after running the container in background. In the past we ran apache service in the foreground during the container run command. Now we can also run apache service or other services after running the container. The process is below :
+  docker exec <container-id> <service-name or command>
+exec: exec means Execute
+container-id: 8f821dfc7097(sample container id)
+service-name:  apachectl -D FOREGROUND (sample service. You can use any other service)
+So we can run commands while running the container in the background. Ei khetre linux er /bin/bash command to colbei. Amra pashe gia ar ekta command execute korlam ar ki.
+
+ We can run command or change base command by docker file: In previous we did change default command by docker run container and after running container by docker exec. But now we can change the default command by using ‘CMD’ in the docker file. We can also do it by ‘ENTRYPOINT’. But Good practice is to use ‘CMD’. Because CMD holo bahir theke change kora jai but ENTRYPOINT ta bahir theke change kora jai na
+
+CMD  apache2ctl -D FOREGROUND : Eitake bole shell format. Docker file er moddhe jodi CMD ei vabe likhi tahole ei ta ekta shell er moddhe run korbe. Tar mane shell ta age start korte hobe then cmd command to run korte hobe
+CMD [“apache2ctl”, “-D”, “FOREGROUND””] :  Eitake bole exec format. Directly system executes korbe. Eitar jonno shell on korte hobe na. CMD likhle eivabe likhbo because ei ta valo practice.
+
+Add LABEL in docker file : Label holo metadata. Just information, add kora. No mandatory needed.
+LABEL version=1.0
+LABEL maintainer=Monir
+
+Latest docker file
+
+#From ubuntu:20.
+## bunch of labels
+#LABEL version=1.0
+#LABEL maintainer=Monir
+## because apache asks for time zone
+#ARG DEBIAN_FRONTEND=noninteractive
+#
+#RUN apt-get update && apt-get install apache2 php \
+#libapache2-mod-php -y
+#RUN rm /var/www/html/index.html
+#COPY ./index.php /var/www/html/
+#CMD ["apachectl", "-D", "FOREGROUND"]
+
+
+# we have a built in image which have php, apache and linux. so latest docker file will be
+FROM php:8.3.4-apache
+COPY ./index.php /var/www/html/c
+
+
+
