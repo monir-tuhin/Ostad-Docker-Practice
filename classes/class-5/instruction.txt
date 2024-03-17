@@ -1,3 +1,6 @@
+google docs line: https://docs.google.com/document/d/1z07vMVl5HkR0DOWDbtmv-PvVYqqcwvj0b3GkBQnQY9g/edit
+=======================================================================================================
+
 Class: 5
 RUN apt-get update && apt-get install apache2 php \ 
 libapache2-mod-php -y : \ (forward slash dile nicer line a nia jete parbo). Eita readability baranor jonno use hoi. Muloto boro command ke forward slash dia niche neya jete pare
