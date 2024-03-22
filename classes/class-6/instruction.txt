@@ -1,0 +1,17 @@
+## docs link: https://docs.google.com/document/d/1z07vMVl5HkR0DOWDbtmv-PvVYqqcwvj0b3GkBQnQY9g/edit
+
+Class: 5
+=================================
+-- We can add '.dockerignore' file to define ignore files and folder of the repo. It is like '.gitignore'
+-- PORT=3000 npm start : If port not define in the app then give port in the cmd during run the app
+-- How to change env variable during docker run
+       - docker run --rm -it -p 3000:4000 -e PORT=4000 monirzaman/node-docker-img
+-- Here docker file
+        FROM node:21-alpine
+        ENV PORT=3000
+        COPY package*.json .
+        RUN npm i
+        COPY . .
+        CMD ["npm", "start"]
+
+-- Here in docker file ENV port is 3000 but we can change env variable during running the container
