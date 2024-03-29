@@ -1,0 +1,24 @@
+## docs link: https://docs.google.com/document/d/1z07vMVl5HkR0DOWDbtmv-PvVYqqcwvj0b3GkBQnQY9g/edit
+
+Class 7 : Docker File Multi Stage Build
+================================================================
+
+=> FROM node: 20-alpine : Eikhane amra 20.11 version o likhte partam but eita likhlam na ei jonno je , jokhone node er new version 20.12 asbe tokhon version upgrade hobe na. Ar ei jonnoi 20 version nilam jate jodi 20.12 or 20.13 or other 20 version er children version update hoi tahole amader base image o auto update hoea jabe.
+      - 20.11.222. Jekono version er 3 ta part thake
+        > 20 : Major version (first part)
+        > 11 : Minor version (middle part)
+        > 222 : Patch version (last part)
+   So node er khetre major version ta define kora valo. Onek khetre onno language a all version define kore dei but node er khetre lagbe na.
+
+=> ADD ./package.json .  ||   COPY ./package.json : These two uses for copying files and folders. But should I use ADD or COPY ? Both work for copy but ADD has extra features beside copying . Here are details below :
+    - ADD :
+        > ADD http://aaaa.com : Download from link or url
+        > ADD https://github.com/monir-tuhin/Ostad-Docker-Practice.git : Do checkout git repository and add repositories file
+        > Muloto add fetch the files but copy does not fetch the file
+    - COPY:
+        > COPY ./package.json . : Only copy the files
+        > Not fetching any files from any link or url
+        > Main task of copy is only copying the file
+        > For copying a file or folder we should use only COPY because it is slight faster than ADD
+
+=> NgInx dia jokhon image build korbo then cmd dear dorkar nai karon nginx image er moddhe by default cmd dea thake. Apache er khetre jemon CMD dea lagchilo for Front a chalanor jonno. But nginx er khetre ei command by default dea thake. Ei jonno dockerfile a dear dorkar nai
