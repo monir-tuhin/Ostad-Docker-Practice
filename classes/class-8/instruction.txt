@@ -1,0 +1,35 @@
+## docs link: https://docs.google.com/document/d/1z07vMVl5HkR0DOWDbtmv-PvVYqqcwvj0b3GkBQnQY9g/edit
+
+Class 8 : Volumes, Bind Mounts, and Categories
+========================================================================
+
+=> docker ps -q : This command is used to list the IDs of running containers. Specifically, it outputs only the container IDs instead of detailed container information like container names, image names, ports, etc.
+   You can use this command in conjunction with other Docker commands or shell commands to perform various operations on containers, such as stopping, restarting, or inspecting them. For example, you could use :
+        - docker stop `docker ps -q` or docker stop $(docker ps -q) : to stop all running containers, or
+        - docker inspect `docker ps -q`  or docker inspect $(docker ps -q) : to inspect the details of all running containers.
+
+=> docker ps -aq : This command is used to list the IDs of all containers, regardless of their state (running, stopped, or exited). This command outputs only the container IDs, similar to docker ps -q, but it includes all containers, not just the running ones.
+   You can use this command in conjunction with other Docker commands or shell commands to perform various operations on containers, such as removing all stopped containers, inspecting all containers, etc. For example, you could use
+        - docker rm `docker ps -aq` or docker rm $(docker ps -aq) : To remove all containers, or
+        - docker inspect `docker ps -aq` or docker inspect $(docker ps -aq) : To inspect the details of all containers.
+
+=> docker start <containerId> : To run the stop container
+=> Docker Volumes :
+    We can change files in the container. And these changes will be reflected in the app. But when a new image is built with some changes then previous changes which I made into the container will be removed. Because container is only temporary lifetime.
+    Another case, if I use mysql db in a container , I insert data into the db through the application. But when I build new image and run container then all information of DB will be lost.
+    So to resolve these problems docker came with Volumes. We can use docker volume to resolve this issue. So data can not be lost even with new image build and container run.
+    In Docker
+    Basically docker has 2 type volumes:-->
+    1. Host-mounted volumes (Bind Mount) :
+       With host-mounted volumes, you can mount a directory or file from the host system into a Docker container. This allows the container to access files from the host system's filesystem, and any changes made within the container are immediately visible on the host system and vice versa.
+    2. Named Volumes (Volumes) :
+       These volumes are managed by Docker and have a specific name assigned to them. They are created using the docker volume create command or automatically created when referenced in the docker run command. Named volumes are typically stored within Docker's storage space and are designed to persist even if no container is using them.
+    3. Anonymous volumes:
+       These volumes are similar to named volumes but are not given a specific name. They are automatically created by Docker and are typically used for temporary data that doesn't need to be persisted beyond the lifecycle of a single container. Anonymous volumes are automatically removed when the container that uses them is removed.
+
+       Docker volumes are commonly used for storing data such as database files, configuration files, log files, and other application data. They provide a flexible and portable way to manage data in Docker environments, allowing containers to be easily moved between different environments without losing important data.
+
+=> docker build -t monirzaman/react-docker . --file dev.Dockerfile : If we have multiple docker file in repository then specify the dockerfile which you want to build
+=> docker run -v <host-mount-pat or project-path>:<container-path> -p 5173:5173 monirzaman/react-docker : Docker bind mount command
+   Real command is below 👍
+   “docker run -v /home/monir/Development/Personal/RND/Docker/Ostad-Docker-Practice/classes/class-8/react-vite/src:/home/project/src -p 5173:5173 monirzaman/react-docker”
