@@ -33,3 +33,11 @@ Class 8 : Volumes, Bind Mounts, and Categories
 => docker run -v <host-mount-pat or project-path>:<container-path> -p 5173:5173 monirzaman/react-docker : Docker bind mount command
    Real command is below 👍
    “docker run -v /home/monir/Development/Personal/RND/Docker/Ostad-Docker-Practice/classes/class-8/react-vite/src:/home/project/src -p 5173:5173 monirzaman/react-docker”
+=> Final docker file. dev.Dockerfile :
+        `FROM node:20-alpine as builder
+        WORKDIR /home/project
+        COPY ./package*.json .
+        RUN npm i
+        COPY . .
+        RUN npm install -g vite
+        CMD ["vite","--host"]`
