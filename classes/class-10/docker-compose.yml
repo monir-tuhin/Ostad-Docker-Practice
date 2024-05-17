@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  wordpress-core:
+    image: wordpress:6.5.3-php8.1-apache
+    ports:
+      - 8080:80
+    restart: unless-stopped
+
+  database:
+    image: mysql:8.3
+    environment:
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=wordpress
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_ROOT_PASSWORD=secret
+    volumes:
+      - ./my.cnf:/etc/mysql/my.cnf
+      - ./mysql_data:/var/lib/mysql
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+
+
+
